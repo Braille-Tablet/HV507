@@ -20,7 +20,7 @@ bool Uart::init(uint32_t baudrate, unsigned long timeout)
   return true;
 }
 
-bool Uart::receiveMessage(uint8_t length, String &message)
+bool Uart::receiveMessage(uint8_t length, String &message) // Attenzione: il parametro length non viene usato. Ripulire il codice!
 {
   if (!_isInitialized)
     return false;
