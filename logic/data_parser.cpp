@@ -4,7 +4,7 @@
 bool GetHv507Parameters(String message, uint8_t &pincontrol0, uint8_t &pincontrol1, uint8_t &pincontrol2, uint8_t &pincontrol3, uint8_t &pincontrol4, uint8_t &pincontrol5, uint8_t &pincontrol6, uint8_t &pincontrol7)
 {
     // String params[80];
-    String params[7];
+    String params[8];
     int result = splitString(message, ',', params);
     // if (result != 81)
     if (result != 8)

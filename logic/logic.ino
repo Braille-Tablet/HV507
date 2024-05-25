@@ -83,6 +83,8 @@ uint8_t pincontrol7;
 // uint8_t pincontrol70;
 // uint8_t pincontrol71;
 
+int stato=0;
+
 void setup()
 {
   uart.init((uint32_t)BAUDRATE, (unsigned long)TIMEOUT);
@@ -93,10 +95,25 @@ void setup()
 void loop()
 {
   bool result;
+  /*
   result = uart.receiveMessage(7, message);
   // result = uart.receiveMessage(81, message);
   if (result == false)
     return; // processing is nothing because any command is not received.
+  */
+
+  if (stato==0){
+    message = "0,0,0,0,0,0,0,0";
+    stato=1;
+  }
+  else{
+    message = "254,254,254,254,254,254,254,254";
+    stato=0;
+  }
+
+  //message = "255,255,255,255,255,255,255,255";
+  //message = "0,0,0,0,0,0,0,0";
+  
 
   result = GetHv507Parameters(message, pincontrol0, pincontrol1, pincontrol2, pincontrol3, pincontrol4, pincontrol5, pincontrol6, pincontrol7);
   // result = GetHv507Parameters(message, pincontrol0, pincontrol1, pincontrol2, pincontrol3, pincontrol4, pincontrol5, pincontrol6, pincontrol7, pincontrol8, pincontrol9, pincontrol10, pincontrol11, pincontrol12, pincontrol13, pincontrol14, pincontrol15, pincontrol16, pincontrol17, pincontrol18, pincontrol19, pincontrol20, pincontrol21, pincontrol22, pincontrol23, pincontrol24, pincontrol25, pincontrol26, pincontrol27, pincontrol28, pincontrol29, pincontrol30, pincontrol31, pincontrol32, pincontrol33, pincontrol34, pincontrol35, pincontrol36, pincontrol37, pincontrol38, pincontrol39, pincontrol40, pincontrol41, pincontrol42, pincontrol43, pincontrol44, pincontrol45, pincontrol46, pincontrol47, pincontrol48, pincontrol49, pincontrol50, pincontrol51, pincontrol52, pincontrol53, pincontrol54, pincontrol55, pincontrol56, pincontrol57, pincontrol58, pincontrol59, pincontrol60, pincontrol61, pincontrol62, pincontrol63, pincontrol64, pincontrol65, pincontrol66, pincontrol67, pincontrol68, pincontrol69, pincontrol70, pincontrol71);
@@ -216,4 +233,8 @@ void loop()
     //Serial.print("stop");
     //Serial.println(timeb,DEC);
   }
+  
+  delay(1000);
+
+
 }
